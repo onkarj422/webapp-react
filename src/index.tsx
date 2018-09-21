@@ -1,14 +1,15 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import theme from './materialui/materialui_module';
-import './styles.scss';
-import { Main } from "./main/main";
+import theme from './custom-components/materialui/materialui_module';
+import { App } from "./app/app";
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { createStyles, Theme, withStyles, WithStyles } from "@material-ui/core";
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 ReactDOM.render(
     <MuiThemeProvider theme={theme}>
-        <Main text="ReactJS"></Main>
+        <BrowserRouter>
+            <App text="ReactJS"></App>
+        </BrowserRouter>
     </MuiThemeProvider>,
     document.getElementById("root")
 );

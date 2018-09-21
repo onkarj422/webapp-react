@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as m from '../materialui/materialui-components';
-import '../styles.scss';
 import styled from 'styled-components';
 
 export interface TextStyles {
