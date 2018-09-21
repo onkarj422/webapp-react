@@ -1,0 +1,30 @@
+.app-bar {
+    position: relative;
+    width: 100%;
+    z-index: 99;
+}
+.app-bar-font {
+    font-weight: 100 !important;
+    opacity: 0.9;
+}
+
+.app-bar-title {
+    padding: 10px;
+    flex-grow: 1;
+}
+
+.content-container {
+    padding: 10px;
+}
+
+.tab-selected {
+    color:secondary !important;
+}
+
+.tab-button {
+    width: 150px;
+}
+
+.tab-bar {
+    margin-left: auto;
+}
