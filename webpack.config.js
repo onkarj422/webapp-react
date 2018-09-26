@@ -10,15 +10,6 @@ module.exports = {
         publicPath: '/dist'
     },
     devServer: {
-        // after: function(app) {
-        //     app.get('/*', function (req, res) {
-        //         res.sendFile(path.join(__dirname, '/index.html'), function (err) {
-        //             if (err) {
-        //                 res.status(500).send(err)
-        //             }
-        //         })
-        //     })
-        // },
         historyApiFallback: true
     },
     plugins: [new HtmlWebpackPlugin({
