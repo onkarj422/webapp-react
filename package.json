@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --mode development",
     "start:dev": "webpack-dev-server",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "startnode": "node index.js"
   },
   "author": "OJ",
   "license": "ISC",
@@ -30,6 +31,9 @@
     "@types/react-dom": "^16.0.7",
     "@types/react-router-dom": "^4.3.1",
     "@types/styled-components": "^3.0.1",
+    "express": "^4.16.3",
+    "history": "^4.7.2",
+    "html-webpack-plugin": "^3.2.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-router-dom": "^4.3.1",

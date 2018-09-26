@@ -2,17 +2,21 @@
     position: relative;
     width: 100%;
     z-index: 99;
+
     .app-bar-title {
         font-weight: 100 !important;
         padding: 10px;
         flex-grow: 1;
         line-height: 90% !important;
     }
+
     .tab-bar {
         margin: auto;
+
         .tab-selected {
-            color:secondary !important;
+            color: secondary !important;
         }
+
         .tab-buttons {
             width: 150px;
         }
@@ -29,14 +33,17 @@
     flex-direction: row;
     height: 54px;
     transition: height 0.5s;
+
     .app-bar-title {
-        line-height: unset;
+        line-height: 80% !important;
         font-size: 40px;
         transition: font-size 0.5s;
     }
+
     .tab-bar {
         margin: unset;
         transition: margin 0.5s;
+
         .tabs-flex-container {
             transition: height 0.5s;
             height: 100%;
@@ -45,5 +52,9 @@
 }
 
 .content-container {
+    padding: 10px;
+}
+
+.view-container {
     padding: 10px;
 }

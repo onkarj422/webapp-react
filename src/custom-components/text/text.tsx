@@ -26,7 +26,7 @@ export const MatText = styled(
 )`
     font-size: ${props => props.size}px;
     color: ${props => props.color} !important;
-    font-weight: ${props => props.weight } !important;
+    font-weight: ${props => props.weight} !important;
     opacity: ${props => props.opacity};
 `;
 
