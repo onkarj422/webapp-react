@@ -2,9 +2,10 @@ import * as React from "react";
 import MatText from '../custom-components/text/text';
 import MatAppBar from '../custom-components/appbar/appbar';
 import * as m from '../custom-components/materialui/materialui-components';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { Switch, Route, Router, Link, BrowserRouter, Redirect, withRouter } from "react-router-dom";
+import { Route, Link, withRouter } from "react-router-dom";
 import { RouteComponentProps } from 'react-router';
+import { AppContainer } from '../containers/app-container';
+import { ViewContainer } from '../containers/view-container';
 
 export type AppConfig = RouteComponentProps<any> & { text: string };
 
@@ -30,10 +31,10 @@ export const App = withRouter(
         }
 
         tabItems = [
-            { label: 'HOME', content: 'Hello Home', value: ["/home", "/"], to: "/home", component: <span>Home</span> },
-            { label: 'GALLERY', content: 'Hello Gallery', value: "/gallery", to: '/gallery', component: <span>Gallery</span> },
-            { label: 'ABOUT US', content: 'Hello About', value: "/about", to: '/about', component: <span>About</span> },
-            { label: 'CONTACT', content: 'Hello Contact', value: "/contact", to: '/contact', component: <span>Contact</span> },
+            { label: 'HOME', content: 'Hello Home', value: ["/home", "/"], component: <span>Home</span> },
+            { label: 'GALLERY', content: 'Hello Gallery', value: "/gallery", component: <span>Gallery</span> },
+            { label: 'ABOUT US', content: 'Hello About', value: "/about", component: <span>About</span> },
+            { label: 'CONTACT', content: 'Hello Contact', value: "/contact", component: <span>Contact</span> },
         ];
 
         onChangeTab = (event: any, value: any) => {
@@ -120,33 +121,3 @@ export const App = withRouter(
         }
     }
 )
-
-export class ViewContainer extends React.Component<any, any> {
-    constructor(props: any) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div className="view-container">
-                <MatText className variant="body1" color="inherit" align="justify" weight="lighter">{this.props.children}</MatText>
-            </div>
-        )
-    }
-}
-
-export class AppContainer extends React.Component<any, any> {
-
-    constructor(props: any) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div className="app-container">
-                <CssBaseline />
-                {this.props.children}
-            </div>
-        )
-    }
-}
