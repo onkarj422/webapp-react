@@ -1,15 +1,17 @@
 import { createStore, combineReducers } from 'redux';
 import rootReducer from './reducer';
 import appReducers from '../app/reducers';
-import menuReducer from '../components/menu/menu.reducer';
+
+declare global {
+    interface Window { __REDUX_DEVTOOLS_EXTENSION__;}
+}
 
 /* eslint-disable no-underscore-dangle */
 export const store = createStore(
     combineReducers({
         root: rootReducer,
-        app: appReducers,
-        menu: menuReducer
-    })
-    //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        app: appReducers
+    }),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 /* eslint-enable */

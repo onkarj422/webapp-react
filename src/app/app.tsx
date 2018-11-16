@@ -2,7 +2,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { onChangeTab, setAppBarState } from './actions';
 import MatText from '../components/text/text';
 import MatAppBar from '../components/appbar/appbar';
 import * as m from '../components/materialui/materialui-components';
@@ -15,40 +14,38 @@ import Paper from '@material-ui/core/Paper';
 import ElementUtils from '../utilities/element/element.utility';
 
 export type AppConfig = RouteComponentProps<any> & {
-    app: any,
-    onChangeTab: any,
-    tabItems: Array<any>,
-    setAppBarState: Function,
+    tabItems: Array<any>
     menuItems: Array<any>,
-    title: string,
-    isFixedAppBar: boolean
+    title: string
 };
 
 const mapStateToProps = (state) => {
     return {
-        app: state.app,
         title: state.app.title,
         tabItems: state.app.tabItems,
-        menuItems: state.app.menuItems,
-        isFixedAppBar: state.app.isFixedAppBar
+        menuItems: state.app.menuItems
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ onChangeTab, setAppBarState }, dispatch);
+    return bindActionCreators({ }, dispatch);
 }
 
 declare global {
     interface Window { viewAppProps;}
 }
 
-export const App =  connect(mapStateToProps, mapDispatchToProps)(withRouter(
+export const App =  withRouter(connect(mapStateToProps, mapDispatchToProps)(
     class App extends React.Component<AppConfig, any> {
 
         constructor(props: AppConfig) {
             super(props);
+            this.state = {
+                appBarClass: 'big',
+                isFixedAppBar: false
+            }
             window.viewAppProps = () => {
-                console.log(this.props.isFixedAppBar);
+                console.log(this.props);
             }
             this.appBar = React.createRef();
         }
@@ -63,8 +60,26 @@ export const App =  connect(mapStateToProps, mapDispatchToProps)(withRouter(
             const elUtils = new ElementUtils();
             window.addEventListener('scroll', () => {
                 let isFixed = (window.scrollY >= (elUtils.getElHeight(ReactDOM.findDOMNode(this.appBar.current))-5)) ? true : false;
-                this.props.setAppBarState('isFixedAppBar', isFixed);
+                this.setState({
+                    isFixedAppBar: isFixed
+                });
             });
+        }
+
+        onChangeTab = (event, value) => {
+            this.setState({
+                appBarClass: this.checkCurrentTab(value)
+            });
+        }
+
+        checkCurrentTab = (value: any) => {
+            let i = 0;
+            this.props.tabItems.map((item: any, index: any) => {
+                if (item.value == value) {
+                    i = index;
+                }
+            });
+            return (i > 0) ? 'small' : 'big';
         }
 
         getPath(to) {
@@ -88,7 +103,8 @@ export const App =  connect(mapStateToProps, mapDispatchToProps)(withRouter(
         }
 
         render() {
-            const { title, menuItems, tabItems, onChangeTab, isFixedAppBar } = this.props;
+            const { title, menuItems, tabItems } = this.props;
+            const { isFixedAppBar, appBarClass } = this.state;
             return (
                 <AppContainer className="app-container">
                     <MatAppBar ref={this.appBar} position="static" color="primary" className={`app-bar-title ${isFixedAppBar ? "fixed" : "gridarea"}`}>
@@ -101,7 +117,7 @@ export const App =  connect(mapStateToProps, mapDispatchToProps)(withRouter(
                         <m.Tabs
                             classes={{ root: 'tab-bar' }}
                             value={this.getHomePath(this.props.location.pathname)}
-                            onChange={onChangeTab}
+                            onChange={this.onChangeTab}
                             indicatorColor="secondary"
                             textColor="inherit"
                             scrollable
