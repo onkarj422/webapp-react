@@ -129,9 +129,6 @@ export const App =  withRouter(connect(mapStateToProps, mapDispatchToProps)(
                             })}
                         </Paper>
                     </AppContainer>
-                    <MatAppBar position="static" className="section-sep" >
-                        <div></div>
-                    </MatAppBar>
                 </div>
 
             );
