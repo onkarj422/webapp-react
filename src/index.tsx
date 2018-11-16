@@ -11,7 +11,7 @@ ReactDOM.render(
     <Provider store={store}>
         <MuiThemeProvider theme={theme}>
             <BrowserRouter>
-                <App text="React"></App>
+                <App></App>
             </BrowserRouter>
         </MuiThemeProvider>
     </Provider>,

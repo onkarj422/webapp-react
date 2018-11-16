@@ -15,6 +15,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
+import Toolbar from '@material-ui/core/Toolbar';
 
 export {
     AppBar,
@@ -33,5 +38,10 @@ export {
     DialogTitle,
     Typography,
     Tab,
-    Tabs
+    Tabs,
+    Menu,
+    MenuItem,
+    Icon,
+    IconButton,
+    Toolbar
 };

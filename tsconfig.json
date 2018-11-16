@@ -2,11 +2,12 @@
     "compilerOptions": {
         "outDir": "./dist/",
         "sourceMap": true,
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "module": "commonjs",
         "moduleResolution": "node",
         "target": "es6",
-        "jsx": "react"
+        "jsx": "react",
+        "lib": ["es2016", "dom", "es6"],
     },
     "include": [
         "./src/**/*"

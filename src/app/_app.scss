@@ -1,60 +1,65 @@
-.app-bar {
-    position: relative;
-    width: 100%;
-    z-index: 99;
+.app-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    grid-template-areas:
+        "appbartitle appbartitle appbartitle"
+        "appbartabs appbartabs appbartabs"
+        "main main main"
+        '. . .';
 
     .app-bar-title {
-        font-weight: 100 !important;
-        padding: 10px;
-        flex-grow: 1;
-        line-height: 90% !important;
-    }
+        position: relative;
+        width: 100%;
+        z-index: 99;
 
-    .tab-bar {
-        margin: auto;
+        .toolbar {
+            flex-grow: 1;
 
-        .tab-selected {
-            color: secondary !important;
-        }
+            .app-bar-title {
+                font-weight: 100 !important;
+                line-height: 90% !important;
+                flex-grow: 1;
+            }
 
-        .tab-buttons {
-            width: 150px;
-        }
-    }
-}
-
-.app-bar.big {
-    height: 200px;
-    transition: font-size 0.5s;
-    transition: height 0.5s;
-}
-
-.app-bar.small {
-    flex-direction: row;
-    height: 54px;
-    transition: height 0.5s;
-
-    .app-bar-title {
-        line-height: 80% !important;
-        font-size: 40px;
-        transition: font-size 0.5s;
-    }
-
-    .tab-bar {
-        margin: unset;
-        transition: margin 0.5s;
-
-        .tabs-flex-container {
-            transition: height 0.5s;
-            height: 100%;
+            .menu-button {
+                fill: whitesmoke;
+                flex-grow: 1;
+            }
         }
     }
-}
 
-.content-container {
-    padding: 10px;
-}
+    .gridarea {
+        grid-area: appbartitle;
+        transition: grid-area 5s;
+    }
 
-.view-container {
-    padding: 10px;
+    .fixed {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        transition: position 5s;
+    }
+
+    .app-bar-tabs {
+        grid-area: appbartabs;
+        .tab-bar {
+            margin: auto;
+
+            .tab-selected {
+                color: secondary;
+            }
+
+            .tab-buttons {
+                width: 150px;
+            }
+        }
+    }
+
+    .main-container {
+        grid-area: main;
+        background: whitesmoke;
+        margin: 0px 60px;
+        height: 1000px;
+    }
 }
