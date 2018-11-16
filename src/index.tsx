@@ -5,14 +5,16 @@ import { store } from './store/index';
 import theme from './components/materialui/materialui_module';
 import { App } from "./app/app";
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
+const history = createBrowserHistory();
 ReactDOM.render(
     <Provider store={store}>
         <MuiThemeProvider theme={theme}>
-            <BrowserRouter>
+            <Router history={history}>
                 <App></App>
-            </BrowserRouter>
+            </Router>
         </MuiThemeProvider>
     </Provider>,
     document.getElementById("root")

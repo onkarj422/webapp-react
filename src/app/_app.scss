@@ -1,7 +1,6 @@
 .app-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-
     grid-template-areas:
         "appbartitle appbartitle appbartitle"
         "appbartabs appbartabs appbartabs"
@@ -62,4 +61,10 @@
         margin: 0px 60px;
         height: 1000px;
     }
+}
+
+.section-sep {
+    width: 100%;
+    height: 200px;
+    position: relative;
 }
