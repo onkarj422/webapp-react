@@ -1,9 +1,11 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
+import { Link } from "react-router-dom";
+import { routerActions } from '../routerActions';
+import { withTheme } from '@material-ui/core';
 
 export interface TabsConfig {
-    tabItems: Array<any>,
-    clickCall: Function
+    tabItems: Array<any>
 }
 
 export class TabsContainer extends React.Component<TabsConfig, any> {
@@ -12,12 +14,16 @@ export class TabsContainer extends React.Component<TabsConfig, any> {
     }
 
     render() {
-        const { tabItems, clickCall } = this.props;
+        const { tabItems } = this.props;
         return (
             <div style={tabButtonsContainerStyle}>
                 {
                     tabItems.map((item, index) => {
-                        return <Button key={index} onClick={clickCall(item.value)} color="secondary">item.label</Button>
+                        return (
+                            <Button style={buttonStyle} key={index} color="secondary">
+                                <Link style={linkStyle} to={routerActions.getPath(item.value)}>{item.label}</Link>
+                            </Button>
+                        )
                     })
                 }
             </div>
@@ -30,5 +36,16 @@ const tabButtonsContainerStyle = {
     gridAutoFlow: 'column',
     gridAutoColumns: 'max-content',
     gridColumnGap: '10px',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    height: '60px',
+    alignItems: 'center'
+}
+
+const buttonStyle = {
+    height: '40px'
+}
+
+const linkStyle = {
+    textDecoration: 'none',
+    color: '#FEEEAC'
 }

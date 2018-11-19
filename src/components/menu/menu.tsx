@@ -28,8 +28,6 @@ class MenuComponent extends  React.Component<MenuConfig, any> {
         });
     }
 
-
-
     render() {
         const { menuItems } = this.props;
         const { anchorEl } = this.state;

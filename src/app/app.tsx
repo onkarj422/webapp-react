@@ -13,6 +13,7 @@ import { Menu } from '../components/menu/menu';
 import Paper from '@material-ui/core/Paper';
 import ElementUtils from '../utilities/element/element.utility';
 import { routerActions } from '../routerActions';
+import { TabsContainer } from '../containers/tabs-container';
 
 export type AppConfig = RouteComponentProps<any> & {
     tabItems: Array<any>
@@ -100,20 +101,7 @@ export const App =  withRouter(connect(mapStateToProps, mapDispatchToProps)(
                             </m.Toolbar>
                         </MatAppBar>
                         <MatAppBar position="static" backgroundColor="#3C3049" className='app-bar-tabs'>
-                            <m.Tabs
-                                classes={{ root: 'tab-bar' }}
-                                value={routerActions.getHomePath(this.props.location.pathname)}
-                                onChange={this.onChangeTab}
-                                indicatorColor="secondary"
-                                textColor="inherit"
-                                scrollable
-                                scrollButtons="off"
-                            >
-                                {tabItems.map((item: any, index: any) => {
-                                    //@ts-ignore
-                                    return <m.Tab classes={{ selected: 'tab-selected', root: 'tab-buttons' }} key={index} label={item.label} component={Link} to={routerActions.getPath(item.value)} value={routerActions.getPath(item.value)} />
-                                })}
-                            </m.Tabs>
+                            <TabsContainer tabItems={tabItems}></TabsContainer>
                         </MatAppBar>
                         <Paper elevation={5} classes={{ root: 'main-container' }}>
                             {tabItems.map((item: any, index: any) => {
@@ -130,7 +118,6 @@ export const App =  withRouter(connect(mapStateToProps, mapDispatchToProps)(
                         </Paper>
                     </AppContainer>
                 </div>
-
             );
         }
     }
