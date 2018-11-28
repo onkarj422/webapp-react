@@ -1,11 +1,16 @@
+@import './app-containers/auth/login/login.form.scss';
+
+body {
+    padding-top: 64px;
+}
+
 .app-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
         "appbartitle appbartitle appbartitle"
         "appbartabs appbartabs appbartabs"
-        "main main main"
-        '. . .';
+        "main main main";
 
     .app-bar-title {
         position: relative;
@@ -58,7 +63,8 @@
     .main-container {
         grid-area: main;
         background: whitesmoke;
-        margin: 0px 60px;
+        padding: 10px;
+        margin: 20px 60px;
         height: 1000px;
     }
 }

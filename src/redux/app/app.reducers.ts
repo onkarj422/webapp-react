@@ -1,4 +1,4 @@
-import { appState } from '../store/states';
+import { appState } from '../states';
 
 const appReducers = (state: any = appState, action: any) => {
     switch(action.type) {

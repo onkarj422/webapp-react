@@ -5,9 +5,10 @@
         "noImplicitAny": false,
         "module": "commonjs",
         "moduleResolution": "node",
-        "target": "es6",
+        "target": "es2016",
         "jsx": "react",
-        "lib": ["es2016", "dom", "es6"],
+        "lib": ["es2016", "dom", "es6", "es2017"],
+        "resolveJsonModule": true
     },
     "include": [
         "./src/**/*"

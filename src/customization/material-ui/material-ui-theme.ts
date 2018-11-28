@@ -4,6 +4,10 @@ import createPalette from '@material-ui/core/styles/createPalette';
 
 export default createMuiTheme({
     palette: createPalette({
+        common: {
+
+
+        },
         type: 'light',
         primary: {
             main: '#4d3c5c'

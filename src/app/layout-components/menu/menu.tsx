@@ -1,10 +1,10 @@
 import * as React from "react";
-import * as m from '../materialui/materialui-components';
-import '../../styles.scss';
+import '../../../styles.scss';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
+import actionMaps from './menu.action.maps';
+import { IconButton, Menu as MMenu, MenuItem } from '@material-ui/core';
 
-export interface MenuConfig {
-    className: any,
+export type MenuConfig = React.HTMLAttributes<HTMLDivElement> & {
     menuItems: Array<any>
 }
 
@@ -28,25 +28,30 @@ class MenuComponent extends  React.Component<MenuConfig, any> {
         });
     }
 
-
+    handleMenuItemClick = (event, index, action) => {
+        action ? actionMaps[action]() : actionMaps['DEFAULT']();
+        this.setState({
+            anchorEl: null
+        });
+    }
 
     render() {
         const { menuItems } = this.props;
         const { anchorEl } = this.state;
         return (
             <div>
-                <m.IconButton
+                <IconButton
                     aria-label="Menu"
                     onClick={this.handleClick}>
                     <MenuRoundedIcon color="secondary"></MenuRoundedIcon>
-                </m.IconButton>
-                <m.Menu id='menu' anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
+                </IconButton>
+                <MMenu id='menu' anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
                     {
                         menuItems.map((item: any, index: any) => {
-                            return <m.MenuItem key={index} onClick={this.handleClose}>{item.label}</m.MenuItem>
+                            return <MenuItem key={index} onClick={event => this.handleMenuItemClick(event, index, item.action)}>{item.label}</MenuItem>
                         })
                     }
-                </m.Menu>
+                </MMenu>
             </div>
         );
     }

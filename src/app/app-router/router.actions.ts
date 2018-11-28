@@ -1,3 +1,5 @@
+import history from '../../history';
+
 const getPath = (to) => {
     if (Array.isArray(to)) {
         return '/home'
@@ -14,7 +16,12 @@ const getHomePath = (path) => {
     }
 }
 
+const navigate = (path) => {
+    history.push(path);
+}
+
 export const routerActions = {
     getPath: getPath,
-    getHomePath: getHomePath
+    getHomePath: getHomePath,
+    navigate: navigate
 }

@@ -10,7 +10,9 @@ module.exports = {
         publicPath: '/dist'
     },
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        inline: true,
+        port: 8888
     },
     plugins: [new HtmlWebpackPlugin({
         template: __dirname + "/index.html"
