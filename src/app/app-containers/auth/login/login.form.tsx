@@ -1,10 +1,10 @@
 import * as React from "react";
-import { TextField, Button, withTheme, Divider } from '@material-ui/core';
+import { TextField, Button, withTheme, Divider, Typography } from '@material-ui/core';
 import FormValidator from './form.validator';
 import GridLayoutAuto from '../../../layout-components/grid/grid.layout';
 
 interface LoginConfig {
-    loginHandler: Function
+    loginHandler: any
 }
 
 class LoginForm extends React.Component<LoginConfig, any> {
@@ -27,6 +27,20 @@ class LoginForm extends React.Component<LoginConfig, any> {
             ],
             isFormValid: false
         }
+    }
+
+    componentDidMount() {
+        addEventListener('keyup', (e) => {
+            if (e.keyCode == 13) {
+                this.handleSubmit(e);
+            }
+        });
+    }
+
+    componentWillUnmount() {
+        removeEventListener('keyup', () => {
+            console.log("removed keyup");
+        });
     }
 
     setFormState = ({
@@ -85,7 +99,7 @@ class LoginForm extends React.Component<LoginConfig, any> {
             form: form
         }, () => {
             this.setFormValidity(() => {
-                this.props.loginHandler({
+                (this.state.isFormValid) && this.props.loginHandler().login({
                     email: this.state.form[this.getFormIndex('email')].value,
                     password: this.state.form[this.getFormIndex('password')].value
                 });
@@ -94,7 +108,7 @@ class LoginForm extends React.Component<LoginConfig, any> {
     }
 
     buildLoginForm = () => {
-        const {  } = this.props;
+        const { loginHandler } = this.props;
         const { form } = this.state;
         return (
             <GridLayoutAuto flow="row" gap="10px" justify="center" align="center">
@@ -136,6 +150,9 @@ class LoginForm extends React.Component<LoginConfig, any> {
                     helperText={form[this.getFormIndex('password')].helperText}
                     value={form[this.getFormIndex('password')].value}>
                 </TextField>
+                {(loginHandler().auth.status == 'incorrect') && (
+                    <Typography variant="caption" color="error">Email or password is incorrect</Typography>
+                )}
                 <Button onClick={this.handleSubmit} color="primary" variant="raised">SIGN IN</Button>
             </GridLayoutAuto>
         )

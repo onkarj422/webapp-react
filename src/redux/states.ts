@@ -23,6 +23,9 @@ export const appState = {
 }
 
 export const authState = {
-    auth: false,
+    auth: {
+        isLogin: false,
+        status: 'none'
+    },
     user: undefined
 }

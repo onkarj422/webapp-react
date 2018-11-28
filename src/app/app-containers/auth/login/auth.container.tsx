@@ -13,7 +13,7 @@ import { Typography } from '@material-ui/core';
 
 interface AuthConfig {
     user?: User,
-    auth?: boolean,
+    auth?: any,
     actions?: any
 }
 
@@ -22,15 +22,19 @@ class Auth extends React.Component<AuthConfig, any> {
         super(props);
     }
 
-    login = (formData) => {
-        this.props.actions.login(formData);
-        console.log(this.props.auth, this.props.user);
+    loginHandler = () => {
+        return {
+            login: (formData) => {
+                this.props.actions.login(formData);
+            },
+            auth: this.props.auth
+        };
     }
 
     buildComponent = () => {
         const { user, auth } = this.props;
-        if (!auth) {
-            return (<LoginForm loginHandler={this.login}></LoginForm>)
+        if ((!auth.isLogin || (auth.status != 'success')) || !user) {
+            return (<LoginForm loginHandler={this.loginHandler}></LoginForm>)
         } else {
             return (
                 <GridLayoutAuto flow="row" gap="10px">
