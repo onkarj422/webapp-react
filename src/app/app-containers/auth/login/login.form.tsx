@@ -44,12 +44,15 @@ class LoginForm extends React.Component<LoginConfig, any> {
     }
 
     getFormIndex = (name) => {
-        return this.state.form.findIndex((form) => (form.name == name));
+        let state = {...this.state};
+        return state.form.findIndex((form) => (form.name == name));
     }
 
     setFormValidity = () => {
-        this.setState({
-            isFormValid: (!this.state.form.find((form) => (!form.isValid)))
+        this.setState((state) => ({
+            isFormValid: (!state.form.find((form) => (!form.isValid || !form.value)))
+        }), () => {
+            this.state.isFormValid ? console.log("Valid") : console.log("Not valid");
         });
     }
 
@@ -57,18 +60,21 @@ class LoginForm extends React.Component<LoginConfig, any> {
         let validator = new FormValidator();
         if (e.target.value.length > 20) return;
         let validation = validator.validate(name, e.target.value);
-        this.setFormState({
-            name: name,
-            value: e.target.value,
-            isValid: validation.isValid,
-            helperText: validation.errorMsg || ''
-        },this.setFormValidity);
+        let form = [...this.state.form];
+        let i = this.getFormIndex(name);
+        form[i].value = e.target.value;
+        form[i].isValid = validation.isValid;
+        form[i].helperText = validation.errorMsg || '';
+        this.setState({
+            form: form
+        }, this.setFormValidity);
     }
 
     handleSubmit = (e) => {
         let validator = new FormValidator();
         let form = [];
-        this.state.form.map((field) => {
+        let formFromState = [...this.state.form];
+        formFromState.map((field) => {
             let validation = validator.validate(field.name, field.value);
             form.push({
                 name: field.name,
@@ -79,10 +85,7 @@ class LoginForm extends React.Component<LoginConfig, any> {
         });
         this.setState({
             form: form
-        }, () => {
-            this.setFormValidity();
-            this.state.isFormValid ? console.log("Valid") : console.log("Not valid");
-        });
+        }, this.setFormValidity);
     }
 
     buildLoginForm = () => {
