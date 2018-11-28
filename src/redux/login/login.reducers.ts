@@ -5,8 +5,9 @@ const authReducer = (state = authState, action) => {
     switch(action.type) {
         case types.LOGIN_RESPONSE: {
             let _state = {...state};
-            _state.auth = action.payload.auth;
+            _state.auth = action.payload.success;
             _state.user = action.payload.user;
+            console.log(_state);
             return _state;
         }
         case types.LOGOUT: {

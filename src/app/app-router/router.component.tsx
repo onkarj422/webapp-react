@@ -2,9 +2,7 @@ import * as React from "react";
 import history from '../../history';
 import { Router, Route } from 'react-router-dom';
 import { App } from '../app';
-import { routerActions } from './router.actions';
 import Auth from '../app-containers/auth/login/auth.container';
-import { User } from '../../types/user.interface';
 
 export default class AppRouter extends React.Component<any,any> {
     constructor(props) {

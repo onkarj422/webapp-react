@@ -7,12 +7,14 @@ import { connect } from 'react-redux';
 import * as loginActions from '../../../../redux/login/login.actions';
 
 import LoginForm from './login.form';
+import GridLayoutAuto from '../../../layout-components/grid/grid.layout';
+import { Typography } from '@material-ui/core';
 
 
 interface AuthConfig {
     user?: User,
     auth?: boolean,
-    login?: Function
+    actions?: any
 }
 
 class Auth extends React.Component<AuthConfig, any> {
@@ -20,10 +22,27 @@ class Auth extends React.Component<AuthConfig, any> {
         super(props);
     }
 
+    login = (formData) => {
+        this.props.actions.login(formData);
+        console.log(this.props.auth, this.props.user);
+    }
+
+    buildComponent = () => {
+        const { user, auth } = this.props;
+        if (!auth) {
+            return (<LoginForm loginHandler={this.login}></LoginForm>)
+        } else {
+            return (
+                <GridLayoutAuto flow="row" gap="10px">
+                    <Typography variant="headline">Logged In!</Typography>
+                    <Typography variant="subheading">Name: {user.firstName} {user.lastName}</Typography>
+                </GridLayoutAuto>
+            )
+        }
+    }
+
     render() {
-        return (
-            <LoginForm></LoginForm>
-        )
+        return this.buildComponent();
     }
 }
 

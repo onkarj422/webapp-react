@@ -3,8 +3,8 @@ import { TextField, Button, withTheme, Divider } from '@material-ui/core';
 import FormValidator from './form.validator';
 import GridLayoutAuto from '../../../layout-components/grid/grid.layout';
 
-type LoginConfig = {
-    theme?: any
+interface LoginConfig {
+    loginHandler: Function
 }
 
 class LoginForm extends React.Component<LoginConfig, any> {
@@ -44,16 +44,14 @@ class LoginForm extends React.Component<LoginConfig, any> {
     }
 
     getFormIndex = (name) => {
-        let state = {...this.state};
+        let state = { ...this.state };
         return state.form.findIndex((form) => (form.name == name));
     }
 
-    setFormValidity = () => {
+    setFormValidity = (callback?) => {
         this.setState((state) => ({
             isFormValid: (!state.form.find((form) => (!form.isValid || !form.value)))
-        }), () => {
-            this.state.isFormValid ? console.log("Valid") : console.log("Not valid");
-        });
+        }), callback && callback);
     }
 
     handleInput = name => e => {
@@ -85,51 +83,58 @@ class LoginForm extends React.Component<LoginConfig, any> {
         });
         this.setState({
             form: form
-        }, this.setFormValidity);
+        }, () => {
+            this.setFormValidity(() => {
+                this.props.loginHandler({
+                    email: this.state.form[this.getFormIndex('email')].value,
+                    password: this.state.form[this.getFormIndex('password')].value
+                });
+            });
+        });
     }
 
     buildLoginForm = () => {
-        const { theme } = this.props;
+        const {  } = this.props;
+        const { form } = this.state;
         return (
             <GridLayoutAuto flow="row" gap="10px" justify="center" align="center">
                 <GridLayoutAuto flow="column" gap="10px">
                     <Button variant="contained">
-                        <img style={{marginRight: theme.spacing.unit}} height="24" width="24" src="https://img.icons8.com/color/50/000000/google-logo.png"></img>
+                        <img style={{ marginRight: '8px' }} height="24" width="24" src="https://img.icons8.com/color/50/000000/google-logo.png"></img>
                         <span>GOOGLE SIGN IN</span>
                     </Button>
-                    <Button variant="contained" style={{background: '#3B5897', color: 'white'}}>
-                        <img style={{marginRight: theme.spacing.unit}} height="24" width="24" src="https://img.icons8.com/material/50/ffffff/facebook-f.png"></img>
+                    <Button variant="contained" style={{ background: '#3B5897', color: 'white' }}>
+                        <img style={{ marginRight: '8px' }} height="24" width="24" src="https://img.icons8.com/material/50/ffffff/facebook-f.png"></img>
                         <span>FACEBOOK SIGN IN</span>
                     </Button>
                 </GridLayoutAuto>
-                <GridLayoutAuto flow="column" justify="unset" align="center">
-                    <div style={{width: '100%'}}>
-                        <Divider style={{width: '70%', margin: '10px auto 0px auto'}}></Divider>
-                    </div>
-                </GridLayoutAuto>
+                <div style={{ width: '100%' }}>
+                    <Divider style={{ width: '70%', margin: '10px auto 0px auto' }}></Divider>
+                </div>
                 <TextField
-                    label="Email"
+                    required
+                    fullWidth
                     autoFocus
                     placeholder="Email"
                     name="email"
-                    error={!(this.state.form[this.getFormIndex('email')].isValid)}
-                    helperText={this.state.form[this.getFormIndex('email')].helperText}
-                    fullWidth
                     type="email"
-                    value={this.state.form[this.getFormIndex('email')].value}
-                    onChange={this.handleInput('email')} required>
+                    label="Email"
+                    onChange={this.handleInput('email')}
+                    error={!(form[this.getFormIndex('email')].isValid)}
+                    helperText={form[this.getFormIndex('email')].helperText}
+                    value={form[this.getFormIndex('email')].value}>
                 </TextField>
                 <TextField
-                    label="Password"
+                    required
+                    fullWidth
                     placeholder="Password"
                     name="password"
-                    error={!(this.state.form[this.getFormIndex('password')].isValid)}
-                    helperText={this.state.form[this.getFormIndex('password')].helperText}
-                    fullWidth
                     type="password"
-                    value={this.state.form[this.getFormIndex('password')].value}
+                    label="Password"
                     onChange={this.handleInput('password')}
-                    required>
+                    error={!(form[this.getFormIndex('password')].isValid)}
+                    helperText={form[this.getFormIndex('password')].helperText}
+                    value={form[this.getFormIndex('password')].value}>
                 </TextField>
                 <Button onClick={this.handleSubmit} color="primary" variant="raised">SIGN IN</Button>
             </GridLayoutAuto>
@@ -141,4 +146,4 @@ class LoginForm extends React.Component<LoginConfig, any> {
     }
 }
 
-export default withTheme()(LoginForm);
+export default (LoginForm);

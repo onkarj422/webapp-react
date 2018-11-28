@@ -77,7 +77,6 @@ export const App =  withRouter(connect(mapStateToProps, mapDispatchToProps)(
                         {children}
                     </ViewContainer>
                 </div>
-
             );
         }
     }
