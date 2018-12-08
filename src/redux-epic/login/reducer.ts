@@ -1,5 +1,5 @@
 import { authState } from '../states';
-import * as types from './login.action.types';
+import * as types from './types';
 
 const authReducer = (state = authState, action) => {
     switch(action.type) {

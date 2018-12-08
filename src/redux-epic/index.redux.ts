@@ -1,7 +1,7 @@
 import { createEpicMiddleware } from 'redux-observable';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import appReducers from './app/app.reducer';
-import loginReducer from '../redux/login/login.reducers';
+import appReducers from './app/reducer';
+import loginReducer from './login/reducer';
 import { rootEpic } from './index.epics';
 import { reducer as formReducer } from 'redux-form'
 

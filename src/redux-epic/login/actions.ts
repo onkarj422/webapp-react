@@ -1,4 +1,4 @@
-import * as types from './login.action.types';
+import * as types from './types';
 
 export const login = (data) => {
     return {

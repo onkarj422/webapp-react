@@ -5,7 +5,7 @@ import SocialLogin from './SocialLogin';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as loginActions from '../../../../redux/login/login.actions';
+import * as loginActions from '../../../../redux-epic/login/actions';
 import GridLayoutAuto from '../../../components/layout/grid/GridLayout';
 import { Typography, Button, Divider } from '@material-ui/core';
 

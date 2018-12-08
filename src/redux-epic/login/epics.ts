@@ -2,8 +2,8 @@ import { Observable, of } from 'rxjs';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { ofType } from 'redux-observable';
 //import { ajax } from 'rxjs/observable/dom/ajax';
-import * as types from './login.action.types';
-import * as actions from './login.actions';
+import * as types from './types';
+import * as actions from './actions';
 import * as db from '../../test-db';
 
 const loginEpic = ($action) => {
