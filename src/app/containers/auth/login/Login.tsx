@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { User } from '../../../../types/user.interface';
+import { User } from '../../../types/user';
 import LoginForm from './LoginForm';
 import SocialLogin from './SocialLogin';
 import { bindActionCreators } from 'redux';
