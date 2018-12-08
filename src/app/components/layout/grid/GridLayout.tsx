@@ -3,7 +3,7 @@ import * as React from 'react';
 type DefaultProps = {
     flow: 'row' | 'column',
     gap: string,
-    justify: 'center' | 'start'
+    justify?: 'center' | 'start'
     | 'end' | 'flex-start'
     | 'flex-end' | 'left'
     | 'right' | 'space-between'
@@ -11,7 +11,7 @@ type DefaultProps = {
     | 'stretch' | 'safe center'
     | 'unsafe center' | 'inherit'
     | 'initial' | 'unset',
-    align: 'normal' | 'stretch' | 'center' | 'start'
+    align?: 'normal' | 'stretch' | 'center' | 'start'
     | 'end' | 'flex-start' | 'flex-end' | 'self-start'
     | 'self-end' | 'baseline' | 'first baseline' | 'last baseline'
     | 'safe center' | 'unsafe center' | 'inherit' | 'initial'

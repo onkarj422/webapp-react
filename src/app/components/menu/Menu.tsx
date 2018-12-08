@@ -1,14 +1,14 @@
 import * as React from "react";
 import '../../../styles.scss';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
-import actionMaps from './menu.action.maps';
+import actionMaps from './actionMap';
 import { IconButton, Menu as MMenu, MenuItem } from '@material-ui/core';
 
 export type MenuConfig = React.HTMLAttributes<HTMLDivElement> & {
     menuItems: Array<any>
 }
 
-class MenuComponent extends  React.Component<MenuConfig, any> {
+class Menu extends  React.Component<MenuConfig, any> {
     constructor(props: MenuConfig) {
         super(props);
         this.state = {
@@ -57,4 +57,4 @@ class MenuComponent extends  React.Component<MenuConfig, any> {
     }
 }
 
-export const Menu = MenuComponent;
+export default Menu;

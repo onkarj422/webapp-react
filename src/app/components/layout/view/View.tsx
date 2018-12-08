@@ -11,7 +11,7 @@ type ViewConfig = {
     theme: any
 } & PaperProps & React.HTMLAttributes<HTMLDivElement>;
 
-class ViewContainer extends React.Component<ViewConfig, any> {
+class View extends React.Component<ViewConfig, any> {
     constructor(props: ViewConfig) {
         super(props);
     }
@@ -54,4 +54,4 @@ let styles = {
 
 }
 
-export default withStyles(styles)(withTheme()(ViewContainer));
+export default withStyles(styles)(withTheme()(View));

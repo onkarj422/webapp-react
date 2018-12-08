@@ -1,4 +1,4 @@
-import { routerActions } from '../../app-router/router.actions';
+import { routerActions } from '../../router/actions';
 
 export default {
     'GO_TO_LOGIN': () => {

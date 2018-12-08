@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
-import { routerActions } from '../../app-router/router.actions';
+import { routerActions } from '../../router/actions';
 
 export type TabsConfig = React.HTMLAttributes<any> & {
     tabItems: Array<any>;
@@ -9,7 +9,7 @@ export type TabsConfig = React.HTMLAttributes<any> & {
     dense?: 'true' | 'false';
 }
 
-export class TabsComponent extends React.Component<TabsConfig, any> {
+class TabsComponent extends React.Component<TabsConfig, any> {
     constructor(props: TabsConfig) {
         super(props);
     }
@@ -55,3 +55,5 @@ const tabButtonsContainerStyle = {
 const linkStyle = {
     textDecoration: 'none'
 }
+
+export default TabsComponent;

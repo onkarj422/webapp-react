@@ -3,11 +3,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { RouteComponentProps } from 'react-router';
-import Header from './layout-components/header/header.component';
-import { Divider, Typography } from "@material-ui/core";
-import { TabsComponent } from './layout-components/tabs/tabs-component';
-import { Menu } from './layout-components/menu/menu';
-import ViewContainer from "./layout-components/view/view-container";
+import { Typography } from "@material-ui/core";
+import Header from './components/layout/header/Header';
+import Tabs from './components/tabs/Tabs';
+import Menu from './components/menu/Menu';
+import View from "./components/layout/view/View";
 
 export type AppConfig = RouteComponentProps<any> & {
     tabItems: Array<{
@@ -71,11 +71,11 @@ export const App =  withRouter(connect(mapStateToProps, mapDispatchToProps)(
                         <Menu className="menu-button" menuItems={menuItems}></Menu>
                     </Header>
                     <Header className="app-bar-tabs">
-                        <TabsComponent style={{ marginLeft: 'auto' }} dense="true" tabItems={tabItems} routes={routes}></TabsComponent>
+                        <Tabs style={{ marginLeft: 'auto' }} dense="true" tabItems={tabItems} routes={routes}></Tabs>
                     </Header>
-                    <ViewContainer type="paper" className='main-container' elevation={3}>
+                    <View type="paper" className='main-container' elevation={3}>
                         {children}
-                    </ViewContainer>
+                    </View>
                 </div>
             );
         }

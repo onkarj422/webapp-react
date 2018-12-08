@@ -3,4 +3,5 @@ body {
     margin: 0 !important;
 }
 
-@import 'app/app';
+@import 'app/styles';
+@import 'app/containers/auth/login/styles';
